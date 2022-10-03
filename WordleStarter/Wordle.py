@@ -1,9 +1,6 @@
 # File: Wordle.py
-
-"""
-This module is the starter file for the Wordle assignment.
-BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
-"""
+#Matthew Corbett, Noelia Root, Tyler Herd, William Paxton, Benjamin Kloepfer
+#WORLD CLONE
 
 import random
 import string
@@ -13,6 +10,7 @@ from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 
 def wordle():
     #return a random word for the FIVE_LETTER_WORDS
+
     def set_answer() -> string:
         return random.choice(FIVE_LETTER_WORDS)
     
@@ -92,20 +90,23 @@ def wordle():
                     #key and tile have different conditions to deal with multiple occurance of the same letter
                     else:
                         gw.set_square_color(gw.get_current_row(), pos, "#999999")
-                        if s[pos] not in answer:
+                        if s[pos] not in answer and gw.get_key_color(s[pos]) != "#66BB66" and gw.get_key_color(s[pos]) != "#CCBB66":
                             gw.set_key_color(s[pos], "#999999")
 
                 #go to the next row
-                gw.set_current_row(gw.get_current_row() + 1)
-
+                if gw.get_current_row()==5:
+                    gw.show_message(f'You did not guess it! The correct answer is: {answer.upper()}' )
+                else:
+                    gw.set_current_row(gw.get_current_row() + 1)
+                    gw.show_message('Good try, but wrong')          
                 #message
-                gw.show_message('Good try, but wrong')
+                
 
             
 
     gw = WordleGWindow()
     answer = set_answer()
-    gw.show_message('take a guess')
+    gw.show_message('Take a guess!')
     gw.add_enter_listener(enter_action)
     #milestone_one()
 
