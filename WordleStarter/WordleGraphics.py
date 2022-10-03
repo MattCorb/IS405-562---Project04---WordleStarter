@@ -7,6 +7,7 @@ graphical display for the Wordle project.
 
 import atexit
 import math
+from subprocess import NORMAL_PRIORITY_CLASS
 import time
 import tkinter
 
@@ -311,3 +312,5 @@ class WordleMessage:
     def set_text(self, text, color="Black"):
         self._text = text
         self._canvas.itemconfigure(self._msg, text=text, fill=color)
+
+
